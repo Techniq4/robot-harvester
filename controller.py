@@ -56,13 +56,16 @@ def help():
 
 def multi(command):
     print(command)
-    code = command.split(" ", 1)
-    print(code)
-    del code[0]
-    commands2=""
-    commands2=' '.join(map(str,code))
-    print(commands2)
-    commands = commands2.split("; ")
+    if command.startswith("loop "):
+        code = command.split(" ", 1)
+        print(code)
+        del code[0]
+        commands2=""
+        commands2=' '.join(map(str,code))
+        print(commands2)
+        commands = commands2.split("; ")
+    else:
+        commands=command.split("; ")
     for x in range(len(commands)):
         print(commands[x])
     for x in range(len(commands)):
@@ -175,7 +178,9 @@ def init():
     print(".")
     time.sleep(2)
     progress_bar(0, 100)
-   ###    time.sleep(random.randint(0,5)/10)
+    for x in range(101):
+        progress_bar(x,100)
+        time.sleep(random.randint(0,5)/10)
     time.sleep(1)
     baner = pyfiglet.figlet_format("Robot Arm Controller")
     print(Fore.YELLOW+baner)
@@ -191,5 +196,7 @@ def init():
 
 if __name__ == "__main__":
     init()
+
+
 
 
